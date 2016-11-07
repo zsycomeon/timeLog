@@ -1,0 +1,27 @@
+{
+	[
+		{"id":1,"fid":null,"name":"统计信息",open:true,
+			"children":[
+				{"id":3,"fid":1,"name":"数据预览","url":"url3"}
+			]
+		},
+		{"id":2,"fid":null,"name":"分析报告","url":"url2",open:true,"children":[{"id":4,"fid":2,"name":"报告生成","url":"url4"}]}
+	]
+}
+
+//zTree，json允许格式
+[
+		{"name":"网站导航", open:true, children: [
+			{ "name":"google", "url":"http://g.cn", "target":"_blank"},
+			{ "name":"baidu", "url":"http://baidu.com", "target":"_blank"},
+			{ "name":"sina", "url":"http://www.sina.com.cn", "target":"_blank"}
+			]
+		}
+		,
+		{"name":"网站导航", open:true, children: [
+			{ "name":"google", "url":"http://g.cn", "target":"_blank"},
+			{ "name":"baidu", "url":"http://baidu.com", "target":"_blank"},
+			{ "name":"sina", "url":"http://www.sina.com.cn", "target":"_blank"}
+			]
+		}
+]

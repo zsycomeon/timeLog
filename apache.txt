@@ -1,0 +1,36 @@
+substr/substring
+splice
+split
+indexof
+lastindexof
+replace
+reg
+
+
+//apache 虚拟主句以及重写配置以及端口配置
+本机回环
+127.0.0.*=>
+step1
+开启虚拟主机 : # Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+如果有重写如lara中的重写
+开启rewrite模块
+
+step2
+httpd.conf中的listen监听开启监听多端口
+
+step3
+虚拟主机配置
+<VirtualHost *:8080> =》主机端口在这定义
+    DocumentRoot "D:/wamp/www/lmoasrc/public"
+	ServerName localhost=》是localhost无需再hosts文件中指定，默认lh：端口即可
+	<Directory "D:/wamp/www/lmoasrc/public">
+			AllowOverride none/all => 不允许/允许 开启htaccess中的配置
+			Require local 
+			Require all granted/denied  =>apache2.4之后的访问权限的配置，允许/不允许
+	</Directory>
+</VirtualHost>
+
+step4
+hosts文件，如果serverNAme是localhost，无需指定，但如果不是localhost，那么就需要在host文件中指定指向

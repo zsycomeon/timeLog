@@ -1,0 +1,3 @@
+1.hosts先于dns 执行域名解析为ip
+2.httpd中，开启#Include conf/extra/httpd-vhosts.conf
+3.配置httpd-vhost.conf 

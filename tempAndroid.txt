@@ -1,0 +1,183 @@
+getMenuInflater()获取menu对象
+getMenuInflater.inflate
+intent.addCategory
+intent.addFlag
+
+putExtra：将数据以key:value的形式放入一个Parcelable对象中，直接由Intent对象携带，适合少量数据。
+setData：将数据以数据流的方式传输，Intent接收后再单独接收Data部分，适合数据量较大的数据传输，如文件或图片等。
+
+
+接收数据的协议类型
+<intent-filter>
+	<data android:scheme="http">
+</intent-filter>
+
+动态注册broadcastReceiver
+IntentFilter = new IntentFilter();
+intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+xbroadcastReceiver = new xbroadcastReceiver();
+registerBroadcastReceiver(xbroadcastReceiver , intentFilter);
+//网络状态权限
+android:name="android.permission.ACCESS_NETWORK_STATE"
+//开启启动接收广播
+<uses-permission
+	    android:name="android.permission.RECEIVER_BOOT_COMPLETED"
+	    />
+//系统级alert弹出级别
+<uses-permission
+	    android:name="android.permission.SYSTEM_SLERT_WINDOW"
+	    />		
+//获取系统服务
+ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+			if(networkInfo != null && networkInfo.isAvailable())
+//一个intent，由filter和一个类组成
+Intentfilter+类 = intent
+
+//广播优先级
+<intent-filter android:priority="100" >
+//优先级高的截断广播
+abortBroadcast();
+//本地广播只能接收本地发送
+localBroadcastManager = LocalBroadcastManager.getInstance(this);
+			IntentFilter localIntentFilter = new IntentFilter();
+			localIntentFilter.addAction("com.example.project711.localreceiver");
+			localReveiver = new LocalReceiver();
+			localBroadcastManager.registerReceiver(localReveiver , localIntentFilter);
+
+			//
+			preferences
+			MODE_MULTI_PROCESS , MODE_PRIVATE
+			
+			
+			
+//SQLite
+				dbHelper.getWritableDatabase();获取可读写数据库句柄
+				
+				
+				//Helper类中的onCreate只会执行一次,也就是说第一次的构造的版本参数是初始版本号
+				//Helper类中的onUpgrade于前一次的版本号不同就可执行
+				//版本号不能向下生成
+			
+//DB
+alter table xx add column yy text;
+
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+switch (oldVersion) {
+case 1:
+db.execSQL(CREATE_CATEGORY);
+case 2:
+db.execSQL("alter table Book add column category_id integer");
+default:
+}
+}
+//关键是没加break
+oldVersion之前的每个版本的语句都会得到执行
+
+//content provider
+getType
+1. 必须以 vnd 开头。
+2. 如果内容 URI 以路径结尾，则后接 android.cursor.dir/，如果内容 URI 以 id 结尾，
+则后接 android.cursor.item/。
+3. 最后接上 vnd.<authority>.<path>。			
+			
+String.valueOf(int) -> toString
+			
+//异步消息处理
+主线程中实例并重写一个handler , 接收子线程传回的数据包
+
+
+/*
+
+RelativeLayout是一种相对布局，控件的位置是按照相对位置来计算的，后一个控件在什么位置依赖于前一个控件的基本位置，是布局最常用，也是最灵活的一种布局。
+//多级列表
+BaseExpandableListView 
+//
+*/
+
+/*
+pageview
+view pager
+
+dip 480 320
+weight 权重
+android:gravity：针对的是控件里的元素
+android：layout_gravity:控件在父控件内的剧中
+
+compile 'com.android.support:support-v4:23.0.1'
+viewPager 增加了addOnPageChangeListener等很多的方法的支持
+
+
+AppCompatActivity自带支持的东西多了
+如 getSupportFragmentManager
+System.currentTimeMillis long 获取时间戳
+*/
+
+/*
+adb netstat -aon|findstr "5037"
+	tasklist /fi "PID eq 3676"
+	taskkill /pid 3676 /f
+	viewPager
+	铺满：保证引入viewpage的mainxml中外层布局的margin属性不瞎设定
+*/
+/*
+下载管理，全局搜索，开始页，带参点击事件，服务开启定期发送系统级alert
+
+RequestQueue mQueue = Volley.newRequestQueue(context);  
+StringRequest stringRequest = new StringRequest(Method.POST, url,  listener, errorListener);  
+JsonObjectRequest jsonRequest = new JsonObjectRequest(Method.POST, url, null, listener, errorListener);  
+
+
+基础要求
+开源库
+应用开源库
+*/
+SAWDC
+/*
+DownloadManager
+he getSystemService() method that provides access to system services comes from Context. An Activity extends Context, a Fragment does not. Hence, you first need to get a reference to the Activity in which the Fragment is contained and then magically retrieve the system service you want.
+
+fragment不算是Context，所以参数需要是Context的，应该获取getContext，或者getActivity
+
+*/
+/*
+绑定服务
+ bindService( longService, connection ,BIND_AUTO_CREATE);
+*/
+
+/*
+imageview和在textview中添加图片等效果
+ Drawable image = getResources().getDrawable(imageResId[position]);  
+ image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());  
+
+ SpannableString sb = new SpannableString(" ");  //一般可以对这里面的文字设定颜色大小，连接然后可以填入textView中
+ ImageSpan imageSpan = new ImageSpan(image, ImageSpan.ALIGN_BOTTOM);  //同样，参数一是放入的图片，参数二是位置
+ 
+setBounds(int x, int y, int width, int height) 
+前两个是组件左上角在容器中的坐标
+后两个是组件的宽度和高度
+
+而这个getIntrinsicWidth()得到的就是拉伸后的宽度.而不是真正图片的宽度.
+*/
+
+/*
+SwipeRefreshLayout
+RecycleVIew
+
+
+ android:orientation="vertical"
+ 布局方位不正确经常出现控件不出现
+ 
+ xmlns:tools="http://schemas.android.com/tools"
+ tools:context="com.example.load.ContentTwo"
+ 引入slidingTab的时候在最外围是添加的
+*/
+/*
+frag->onAttach->onCreate->onCreateView->onStart->onResume
+*/
+
+lrucache , list远程图片，volley实现和retrofit实现，
+
+用retrofit获取列表
+adapter中用imageloader获取图片，然后缓存进，文件缓存ACache
+			

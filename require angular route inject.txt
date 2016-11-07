@@ -1,0 +1,34 @@
+<script src="js/require.js" defer async="true" ></script>
+<script src="js/require.js" defer async="true" data-main="main">	//入口文件 主模块
+/*
+* main.js	//require默认js文件，js后缀可省略
+*/
+require.config({
+	baseUrl : "/main/js",
+	
+	paths :{
+		"jquery" : "jquery.min",
+		"angular" : "angular.min"
+	},
+	shim : {	//非amd规则的库的引入
+		"underscore" :{	
+			exports : "_"
+		},
+		"backbone"	:{
+			exports : "Backbone",	//暴露出来的使用前缀
+			deps	: ["underscore" , "jquery"]	//依赖关系
+		}
+	}
+});
+
+require(["moduleA" , "moduleB" , "moduleC"] , function(){	//入口文件 采用amd规范异步调用依赖模块
+	//TO-DO
+
+})
+
+
+amd require
+meterilize js
+bower
+//lara
+wrapper reflect cap dao
